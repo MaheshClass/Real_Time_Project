@@ -23,13 +23,13 @@ jobs:
       - name: build package
         run: mvn package
         working-directory: ./taxi-booking
-      - name: Publish Test Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Maven Tests
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
+    #   - name: Publish Test Report
+    #     uses: dorny/test-reporter@v1
+    #     if: always()
+    #     with:
+    #       name: Maven Tests
+    #       path: target/surefire-reports/*.xml
+    #       reporter: java-junit
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
