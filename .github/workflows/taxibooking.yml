@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: taxi-booking-war
-          path: target/*.war
+          path: target/taxi-booking-1.0.1.war
