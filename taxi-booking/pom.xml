@@ -3,10 +3,11 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-<groupId>com.example.maven-project</groupId>
+  <groupId>com.example.maven-project</groupId>
 <artifactId>taxi-booking</artifactId>
 <version>1.0-SNAPSHOT</version>
-<packaging>war</packaging>
+    <relativePath>../pom.xml</relativePath>
+  <packaging>war</packaging>
 
   <artifactId>taxi-booking-1.0.1</artifactId>
   <packaging>war</packaging>

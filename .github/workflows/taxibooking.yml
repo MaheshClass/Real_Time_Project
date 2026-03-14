@@ -19,6 +19,11 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
          languages: java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+         distribution: temurin
+         java-version: 17
       - name: clean package
         run: mvn clean 
         working-directory: ./taxi-booking
