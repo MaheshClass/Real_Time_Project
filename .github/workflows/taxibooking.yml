@@ -38,7 +38,7 @@ jobs:
           name: taxi-booking-war
           path: taxi-booking/target/taxi-booking-1.0.1.war
       - name: Build Docker Image
-        run: docker build -t taxi-booking-app ./taxi-booking
+        run: docker build -t taxi-booking-app .
       - name: Scan Docker Image
         uses: aquasecurity/trivy-action@master
         with:
