@@ -11,7 +11,7 @@ jobs:
     name: runs on ubuntu-latest
     runs-on: ubuntu-latest
     permissions:
-      security-events: "read"
+      security-events: "write"
       contents: "read"
     steps:
       - name: Checkout code
