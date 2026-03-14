@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taxi-booking-deployment
+  labels:
+    app: taxi-booking
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: taxi-booking
+  template:
+    metadata:
+      labels:
+        app: taxi-booking
+    spec:
+      containers:
+      - name: taxi-booking-container
+        image: qualitygroup/taxi-booking
+        ports:
+        - containerPort: 8080
