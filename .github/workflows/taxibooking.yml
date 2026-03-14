@@ -20,14 +20,14 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
          languages: java
-         build-mode: manual
+         build-mode: autobuild
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
          distribution: temurin
          java-version: 17
       - name: clean package
-        run: cd taxi-booking && mvn clean package
+        run: mvn -B clean install --file taxi-booking/pom.xml
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
       - name: Perform CodeQL Analysis
