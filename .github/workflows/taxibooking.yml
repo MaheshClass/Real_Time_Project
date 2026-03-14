@@ -64,3 +64,4 @@ jobs:
             cd /home/ubuntu/sample
             kubectl apply -f deployment.yaml
             kubectl apply -f service.yaml
+            kubectl port-forward svc/taxi-booking-service 8080:80 --address 0.0.0.0
