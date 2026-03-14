@@ -61,7 +61,13 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/sample
+            cd /home/ubuntu
+            if [ ! -d "sample" ]; then
+              git clone https://github.com/MaheshClass/Real_Time_Project.git sample
+            fi
+
+            cd sample
+            git pull
+
             kubectl apply -f ./k8s/deployment.yaml
             kubectl apply -f ./k8s/service.yaml
-            kubectl port-forward svc/taxi-booking-service 8080:80 --address 0.0.0.0
