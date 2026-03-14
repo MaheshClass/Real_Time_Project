@@ -27,7 +27,7 @@ jobs:
          distribution: temurin
          java-version: 17
       - name: clean package
-        run: cd taxi-booking && mvn clean package
+        run: mvn -B clean package --file taxi-booking/pom.xml
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
       - name: Upload Artifact
