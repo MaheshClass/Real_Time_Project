@@ -14,6 +14,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+         languages: java
       - name: clean package
         run: mvn clean 
         working-directory: ./taxi-booking
@@ -23,6 +27,8 @@ jobs:
       - name: build package
         run: mvn package
         working-directory: ./taxi-booking
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -30,6 +36,10 @@ jobs:
           path: taxi-booking/target/taxi-booking-1.0.1.war
       - name: Build Docker Image
         run: docker build -t taxi-booking-app .
+      - name: Scan Docker Image
+        uses: aquasecurity/trivy-action@master
+        with:
+         image-ref: taxi-booking-app
       - name: Docker login
         uses: docker/login-action@v2
         with:
