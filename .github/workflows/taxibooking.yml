@@ -62,12 +62,14 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu
-            if [ ! -d "sample" ]; then
+            if [ ! -d "sample/.git" ]; then
+              rm -rf sample
               git clone https://github.com/MaheshClass/Real_Time_Project.git sample
+            else
+              cd sample
+              git pull
             fi
 
             cd sample
-            git pull
-
-            kubectl apply -f ./k8s/deployment.yaml
-            kubectl apply -f ./k8s/service.yaml
+            kubectl apply -f k8s/deployment.yaml
+            kubectl apply -f k8s/service.yaml
