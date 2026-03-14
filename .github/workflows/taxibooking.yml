@@ -72,6 +72,7 @@ jobs:
             fi
             kubectl apply -f deployment.yaml
             kubectl apply -f service.yaml
-            MINIKUBE_IP=$(minikube ip)
-            sudo iptables -t nat -A PREROUTING -p tcp --dport 30007 -j DNAT --to-destination $MINIKUBE_IP:30007
-            sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+            # Stop old port-forward if running
+            pkill -f "kubectl port-forward" || true
+            # Start port-forward in background
+            nohup kubectl port-forward svc/taxi-booking-service 8080:80 --address 0.0.0.0 > portforward.log 2>&1 &
