@@ -72,3 +72,6 @@ jobs:
             fi
             kubectl apply -f deployment.yaml
             kubectl apply -f service.yaml
+            MINIKUBE_IP=$(minikube ip)
+            sudo iptables -t nat -A PREROUTING -p tcp --dport 30007 -j DNAT --to-destination $MINIKUBE_IP:30007
+            sudo iptables -t nat -A POSTROUTING -j MASQUERADE
