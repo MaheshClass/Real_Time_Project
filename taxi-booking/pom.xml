@@ -3,11 +3,10 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-<parent>
-    <groupId>com.example.maven-project</groupId>
-    <artifactId>maven-project</artifactId>
-    <version>1.0-SNAPSHOT</version>
-</parent>
+<groupId>com.example.maven-project</groupId>
+<artifactId>taxi-booking</artifactId>
+<version>1.0-SNAPSHOT</version>
+<packaging>war</packaging>
 
   <artifactId>taxi-booking-1.0.1</artifactId>
   <packaging>war</packaging>
