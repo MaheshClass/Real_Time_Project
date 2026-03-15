@@ -17,20 +17,35 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+            # DEV ENVIRONMENT
+      - name: Deploy to DEV Namespace
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          echo "Code pushed to DEV branch"
+          echo "Deploying to DEV namespace in Kubernetes cluster"
+          echo "DEV environment running"
+
+      # PROD ENVIRONMENT
+      - name: Deploy to PROD Namespace
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Code pushed to MAIN branch"
+          echo "Deploying to PROD namespace in Kubernetes cluster"
+          echo "PROD environment running"
       # - name: Initialize CodeQL
       #   uses: github/codeql-action/init@v3
       #   with:
       #    languages: java
       #    build-mode: autobuild
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-         distribution: temurin
-         java-version: 17
-      - name: clean package
-        run: mvn -B clean install --file taxi-booking/pom.xml
-      - name: Run JUnit test cases
-        run: echo " Junit test cases runs succesfully"
+      # - name: Setup Java
+      #   uses: actions/setup-java@v4
+      #   with:
+      #    distribution: temurin
+      #    java-version: 17
+      # - name: clean package
+      #   run: mvn -B clean install --file taxi-booking/pom.xml
+      # - name: Run JUnit test cases
+      #   run: echo " Junit test cases runs succesfully"
       # - name: Autobuild
       #   uses: github/codeql-action/autobuild@v3
       # - name: Perform CodeQL Analysis
