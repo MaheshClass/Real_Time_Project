@@ -35,11 +35,11 @@ jobs:
       #   uses: github/codeql-action/autobuild@v3
       # - name: Perform CodeQL Analysis
       #   uses: github/codeql-action/analyze@v3
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: taxi-booking-war
-          path: taxi-booking/target/taxi-booking-1.0.1.war
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: taxi-booking-war
+      #     path: taxi-booking/target/taxi-booking-1.0.1.war
       # - name: Build Docker Image
       #   run: docker build -t taxi-booking-app .
       # - name: Scan Docker Image
