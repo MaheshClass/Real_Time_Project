@@ -116,6 +116,5 @@ jobs:
             echo "Deploying application"
             kubectl apply -f deployment.yaml -n $NAMESPACE
             kubectl apply -f service.yaml -n $NAMESPACE
-
             echo "Deployment completed in namespace $NAMESPACE"
             
