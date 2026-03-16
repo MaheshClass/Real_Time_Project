@@ -81,15 +81,26 @@ jobs:
           elif [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             echo "NAMESPACE=prod" >> $GITHUB_ENV
           fi
-      - name: Deploy to Minikube
+      - name: Deploy to Kubernetes
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+
+            BRANCH=${{ github.ref_name }}
+
+            if [ "$BRANCH" = "dev" ]; then
+              NAMESPACE="dev"
+            elif [ "$BRANCH" = "main" ]; then
+              NAMESPACE="prod"
+            fi
+
             echo "Deploying to namespace: $NAMESPACE"
+
             cd /home/ubuntu
+
             if [ ! -d "sample/.git" ]; then
               rm -rf sample
               git clone https://github.com/MaheshClass/Real_Time_Project.git sample
@@ -98,6 +109,7 @@ jobs:
               cd sample
               git pull
             fi
+
             echo "Creating namespace if not exists"
             kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 
